@@ -10,3 +10,5 @@
 *.mat
 *.npy
 
+./results
+./LR
