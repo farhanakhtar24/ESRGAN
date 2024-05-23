@@ -42,7 +42,13 @@ def superResolution():
         # Resize img2 to match the height of img1
         img2_resized = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
 
+        # Ensure img2_resized and img1 have the same number of color channels
+        if img2_resized.shape[2] > img1.shape[2]:
+            img2_resized = img2_resized[:, :, :img1.shape[2]]
+
+        # Now you can stack img2_resized and img1
         combined_img = np.hstack((img2_resized, img1))
+
         plt.imsave(f'./results/{fname}_combined.png', combined_img)
         
         # Open the image file in binary mode
